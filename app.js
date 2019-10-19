@@ -68,6 +68,7 @@ app.use((req, res, next) => {
 
 app.post('/users', userController.create);
 app.post('/login', userController.login);
+app.get('/test', userController.test);
 
 console.log('SERVER READY');
 module.exports = app;

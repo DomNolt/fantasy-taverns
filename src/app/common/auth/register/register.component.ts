@@ -1,31 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { roleId } from '../register/user_roles';
-import { Tavern } from './Tavern';
+import { TavernService, ITavern} from '../tavern/tavern.service';
+import { stringify } from 'querystring';
 
 @Component({
     templateUrl: './register.component.html',
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
     userName = '';
     password = '';
-    roleId : number = 0;
-    Taverns = ["Moe's Tavern", "Joe's Tavern", "Blashemy Bar", "Rejected Reality", "Brianna's"];
-    Tavern : Tavern = {TavernName: "Moe's Tavern", Id: 1};
+    Taverns : ITavern[];
+    //Taverns = ["Moe's Tavern", "Joe's Tavern", "Blashemy Bar", "Rejected Reality", "Brianna's"];
+    //Tavern : Tavern = {TavernName: "Moe's Tavern", Id: 1};
+    selectTavern : ITavern = {ID: 0, TavernName: ""};
 
-    constructor(private router: Router, private authService: AuthService) {
+    constructor(private router: Router, private authService: AuthService, private tavernService: TavernService) {
+
     }
 
-    
+    ngOnInit(): void {
+        this.tavernService.getAll().subscribe((taverns) => (this.Taverns = taverns));
+    }
+
     register(): void {
         const user = {
             UserName: this.userName,
             Password: this.password,
-            Tavern: this.Tavern,
-        }
-
-        console.log(JSON.stringify(user));      
+            Tavern: this.selectTavern,
+        }    
 
         this.authService.create(user).subscribe((answer) => {
             this.router.navigateByUrl('/login');

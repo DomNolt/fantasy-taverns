@@ -3,6 +3,8 @@ const express = require('express');
 require('dotenv').config();
 require('./global_functions');
 const userController = require('./controllers/UsersController');
+const tavernController = require('./controllers/TavernsController');
+const RoomsController = require('./controllers/RoomsController');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
@@ -68,7 +70,17 @@ app.use((req, res, next) => {
 
 app.post('/users', userController.create);
 app.post('/login', userController.login);
-app.get('/test', userController.test);
+app.get('/register', tavernController.getAll);
+
+app.get('/my-tavern',
+    passport.authenticate('jwt', {session: false}),
+    RoomsController.getAll,
+);
+
+app.get('/userTavern',
+    passport.authenticate('jwt', {session: false}),
+    tavernController.getSingle,
+);
 
 console.log('SERVER READY');
 module.exports = app;

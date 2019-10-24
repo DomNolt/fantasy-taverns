@@ -21,13 +21,13 @@
       <div *ngIf="roleId != null">
         <div *ngIf="roleId == 1" class="col-md-6">   <!--admin-->
          <label>Enter a Tavern Name:</label>
-                                             <!--[(ngModel)]="Taverns.inputName"-->
-         <input type="text" class="form-control" [(ngModel)]="Taverns.inputName" name="Tavern" placeholder="Enter a tavern name!">
+                                             <!--[(ngModel)]="Taverns.TavernName"-->
+         <input type="text" class="form-control" [(ngModel)]="selectTavern.TavernName" name="TavernName" placeholder="Enter a tavern name!">
         </div>
         <div *ngIf="roleId == 2" class="col-md-6">   <!--manager-->
           <label>Select a Tavern</label>
-          <select class="form-control" [(ngModel)]="tavern" name="selectTavern">
-            <option *ngFor='let Tavern of Taverns' [ngValue]="tavern">{{Tavern}}</option>
+          <select class="form-control" [(ngModel)]="selectTavern.ID" name="Id">
+            <option *ngFor='let Tavern of Taverns' [value]="Tavern.ID"> {{Tavern.TavernName}}</option>
           </select>
         </div>
       </div>

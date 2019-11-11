@@ -14,6 +14,8 @@ import { RegisterComponent } from './common/auth/register/register.component'
 import { TokenInterceptor } from './common/auth/token.interceptor';
 import { HomeComponent } from './home.component';
 import { TavernsModule } from './common/auth/tavern/tavern.module';
+import { MyTavernsComponent } from './common/auth/tavern/my-tavern/my-tavern.component';
+import { AddRoomComponent } from './common/auth/tavern/my-tavern/my-tavern-add-room/my-tavern-add-room.component';
 
 @NgModule({
     bootstrap: [AppComponent],

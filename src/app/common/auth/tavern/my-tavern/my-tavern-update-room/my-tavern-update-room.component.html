@@ -1,0 +1,36 @@
+<h2>Update Room</h2>
+
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <div class="col-md-6">
+            <label for="RoomName">Room Name</label>
+            <input type="text" formControlName="RoomName" class="form-control">
+            <div *ngIf="RoomName.invalid && RoomName.dirty" class="alert alert-danger">
+                <div *ngIf="RoomName.errors.required">
+                    Room Name is required.
+                </div>
+                <div *ngIf="RoomName.errors.maxlength">
+                    Room Name is too long.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6">
+            <label class="control-label" for="DailyRate">Daily Rate</label>
+            <input type="number" formControlName="DailyRate" class="form-control">
+            <div *ngIf="DailyRate.invalid && DailyRate.dirty" class="alert alert-danger">
+                <div *ngIf="DailyRate.errors.required">
+                    Daily Rate is required.
+                </div>
+            </div>            
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary" [disabled]="!formGroup.valid">Save</button>
+            <button type="button" class="btn btn-secondary" (click)="cancel()" style="float: right">Cancel</button>        
+        </div>
+    </div>
+</form>

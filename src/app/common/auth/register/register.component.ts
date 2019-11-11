@@ -11,8 +11,6 @@ export class RegisterComponent implements OnInit {
     userName = '';
     password = '';
     Taverns : ITavern[];
-    //Taverns = ["Moe's Tavern", "Joe's Tavern", "Blashemy Bar", "Rejected Reality", "Brianna's"];
-    //Tavern : Tavern = {TavernName: "Moe's Tavern", Id: 1};
     selectTavern : ITavern = {ID: 0, TavernName: ""};
 
     constructor(private router: Router, private authService: AuthService, private tavernService: TavernService) {

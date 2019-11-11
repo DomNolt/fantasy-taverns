@@ -1,0 +1,27 @@
+<h2>Add Room:</h2>
+
+<form #form="ngForm" (submit)="addRoom(form)">
+    <div class="row">
+        <div class="col-md6">
+            <label for="RoomName"></label>
+            <input required type="text" class="form-control" name="RoomName" ngModel #RoomName="ngModel" placeholder="Room Name">
+            <div *ngIf="RoomName.invalid && (RoomName.dirty || RoomName.touched)" class="alert alert-danger">
+                <div *ngIf="RoomName.errors.required" >
+                    Room Name is required.
+                </div>
+            </div>
+
+            <label for="DailyRate"></label>
+            <input required type="number" class="form-control" name="DailyRate" ngModel #DailyRate="ngModel" placeholder="Daily Rate">  
+            <div *ngIf="DailyRate.invalid && (DailyRate.dirty || DailyRate.touched)" class="alert alert-danger">
+                <div *ngIf="DailyRate.errors.required" >
+                    Daily Rate is required.
+                </div>
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary"> Add </button>
+            <button type="button" class="btn btn-secondary" (click)="cancel()" style="float: right">Cancel</button>
+        </div>
+    </div>
+</form>

@@ -77,6 +77,16 @@ app.get('/my-tavern',
     RoomsController.getAll,
 );
 
+app.post('/my-tavern',
+    passport.authenticate('jwt', {session: false}),
+    RoomsController.createRoom,
+);
+
+app.put('/my-tavern',
+    passport.authenticate('jwt', {session: false}),
+    RoomsController.updateRoom,
+);
+
 app.get('/userTavern',
     passport.authenticate('jwt', {session: false}),
     tavernController.getSingle,

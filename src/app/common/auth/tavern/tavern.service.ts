@@ -14,7 +14,7 @@ export class TavernService {
     constructor(private http: HttpClient) {}
 
     getAll(): Observable<ITavern[]> {
-        return this.http.get<ITavern[]>('http://localhost:3000/register');
+        return this.http.get<ITavern[]>('http://localhost:3000/register?Name=${name}');
     }
 
     getSingle(): Observable<ITavern> {
